@@ -1,0 +1,34 @@
+{% extends 'web/base.html' %}
+
+{% block title %}
+    Авторизация
+{% endblock %}
+
+{% block body %}
+    <body>
+    <div class="container h-25"></div>
+    <div class="container w-50">
+        <div class="card w-50 h-50 m-auto">
+            <div class="card-body">
+                <div class="p-8 p-md-4">
+                    <h3 class="text-center mb-4">Вход</h3>
+                    <form action="/login" class="login-form" method="post">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form.login(class_="form-control rounded-left", placeholder_="Логин") }}
+                        </div>
+                        <div class="form-group d-flex">
+                            {{ form.password(class_="form-control rounded-left", placeholder_="Пароль") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.submit(class_="form-control btn btn-primary rounded submit px-3") }}
+                        </div>
+                        <div class="form-group">
+                            <a href="{{ url_for('register') }}" class="button form-control btn-secondary rounded submit px-3">Регистрация</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

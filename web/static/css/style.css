@@ -1,0 +1,99 @@
+/* CUSTOM FONTS */
+@font-face {
+    font-family: 'Clear Sans';
+    src: url('../fonts/Clear Sans.ttf') format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* TOAST */
+.toast-wrap {
+    z-index: 11
+}
+
+/* BUTTON STYLES */
+a.button {
+    text-decoration: #FFFFFF;
+    text-align: center;
+}
+
+.btn-square-md {
+    width: 100px !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: 100px !important;
+    text-align: center;
+    padding: 0;
+    font-size: 12px;
+    border-style: hidden;
+}
+
+/* MAP */
+img.map {
+    position: absolute;
+    height: 9rem;
+    width: 9rem;
+}
+
+img.map:hover {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 9;
+}
+
+/* DASHBOARD */
+.count-circle {
+    background: rgba(219, 220, 220, 0.51);
+    border-style: hidden;
+    width: 50px !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: 50px !important;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+    font-size: 12px;
+    border-radius: 100%;
+}
+
+.vertical-center {
+    display: flex;
+    align-items: center;
+}
+
+.circles {
+    position: relative;
+    right: 0
+}
+
+/* PAGE TRANSITION ANIMATIONS */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1
+    }
+}
+
+.fade-in {
+    animation: fade-in 0.3s;
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-out {
+    animation: fade-out 0.3s;
+}
+
+.non-visible {
+    opacity: 0;
+}

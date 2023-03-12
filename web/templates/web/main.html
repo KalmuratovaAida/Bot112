@@ -1,0 +1,90 @@
+{% extends 'web/base.html' %}
+
+
+{% block title %}Главная{% endblock %}
+{% block header %}Главная страница{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-5 border-right h-100">
+                <div class="card rounded-pill mb-2 px-lg-4">
+                    <div class="card-body px-0 py-1 w-100 row justify-content-between">
+                        <div class="col-3 vertical-center px-0">
+                            <div class="text-start">
+                                <h5 class="m-0">Звонки</h5>
+                            </div>
+                        </div>
+                        <div class="col-auto px-0">
+                            {% for count, rng in zip(data['dates'], ('месяц', '7 дней', '3 дня', 'сегодня')) %}
+                                <div class="float-end text-center ms-2">
+                                    <span class="text-muted">{{ rng }}</span><br>
+                                    <button class="count-circle">
+                                        <span class="h6 m-0 p-0">{{ count }}</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="card rounded-pill mb-2 px-lg-4">
+                    <div class="card-body px-0 py-1 w-100 row justify-content-between">
+                        <div class="col-3 vertical-center px-0">
+                            <div class="float-start text-start">
+                                <h5 class="m-0">Инциденты</h5>
+                            </div>
+                        </div>
+                        <div class="col-auto px-0 float-end">
+                            {% for incident, count in data['incidents'].items() %}
+                                <div class="float-end text-center ms-2">
+                                    <span class="text-muted">{{ incident }}</span><br>
+                                    <button class="count-circle">
+                                        <span class="h6 m-0 p-0">{{ count }}</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="card rounded-pill mb-2 px-lg-4">
+                    <div class="card-body px-0 py-1 w-100 row justify-content-between">
+                        <div class="col-3 vertical-center px-0">
+                            <div class="float-start text-start">
+                                <h5 class="m-0">Статус</h5>
+                            </div>
+                        </div>
+                        <div class="col-auto px-0 float-end">
+                            {% for state, count in data['processed'] %}
+                                <div class="float-end text-center ms-2">
+                                    <span class="text-muted">{{ 'обработано' if state else 'необработано' }}</span><br>
+                                    <button class="count-circle">
+                                        <span class="h6 m-0 p-0">{{ count }}</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-7 border-right h-100">
+                <div class="card rounded-3 h-100">
+                    <div class="card-body w-100 h-100">
+                        <canvas id="chart" width="auto" height="auto"></canvas>
+                    </div>
+                </div>
+                <div class="float-end">
+                    <button id="excelExportBtn" class="btn btn-success btn-square-md mx-1 text-white">Экспорт в Excel
+                    </button>
+                    <button id="wordExportBtn" class="btn btn-primary btn-square-md mx-1 text-white">Экспорт в Word
+                    </button>
+                    <button id="refreshBtn" class="btn btn-warning btn-square-md mx-1 text-white">Обновить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+{% endblock %}

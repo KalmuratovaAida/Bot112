@@ -1,0 +1,84 @@
+{% extends 'web/base.html' %}
+
+
+{% block title %}Звонки{% endblock %}
+{% block header %}Список звонков{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+        <table id="callsTable" class="table table-borderless table-hover table-sm">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Обр-но</th>
+                <th>Номер</th>
+                <th>Инцидент</th>
+                <th>Адрес</th>
+                <th>Время</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalLabel">Детали звонка</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mx-2 mb-2">
+                        <div class="col-8">
+                            <h6 id="incident" class="h6 rounded-pill bg-danger-light float-start px-2 mb-3">
+                                Загрузка...</h6>
+                            <h6 id="datetime" class="h6 rounded-pill bg-info float-end px-2 mb-3">Загрузка...</h6>
+                            <h4 id="caller" class="h5 text-center mb-3">Загрузка...</h4>
+                            <h4 id="address" class="h4 text-center">Загрузка...</h4>
+                        </div>
+                        <div class="col-4">
+                            <img id="map" class="map rounded-3" src="" alt="Карта">
+                        </div>
+                    </div>
+                    <label for="info">Расшифровка:</label>
+                    <textarea class="form-control chat-log" name="info" id="info" rows="7"
+                              readonly>Загрузка...</textarea>
+                    <audio controls class="w-100 mt-3" id="audio" src="/api/call_mp3"></audio>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-check form-switch col">
+                        <input class="form-check-input float-start" type="checkbox" role="switch" id="proceedCheckBox">
+                        <label class="form-check-label" for="proceedCheckBox">Обработано</label>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="button" id="saveButton" class="btn btn-primary" data-bs-dismiss="modal">Сохранить
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Удалить вызов?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" id="deleteBtn" class="btn btn-danger" data-call-id="-99"
+                            data-bs-dismiss="modal">Удалить
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+            integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
+            crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/calls.js') }}"></script>
+{% endblock %}
+
